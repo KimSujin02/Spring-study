@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+<!--myBatis의 싱글톤 객체 생성  -->
+<bean id="my" class="org.mybatis.spring.SqlSessionTemplate">
+	<constructor-arg ref="config"></constructor-arg>
+</bean>
+
+<!-- myBatis의 설정 객체 생성 -->
+<bean id="config" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <property name="dataSource" ref="dbcp"></property>
+    <property name="configLocation" value="classpath:config.xml"></property>
+</bean>
+
+<!-- dbcp의 싱글톤 객체 디비 컨넥션 풀 = dbcp -->
+<!-- DB프로그램의 2단계 까지 담당해준다. driver설정, DB연결 -->
+<bean id="dbcp" class="org.apache.commons.dbcp.BasicDataSource">
+	<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+	<property name="url" value="jdbc:mysql://localhost:3307/spring"></property>
+	<property name="username" value="root"></property>
+	<property name="password" value="1234"></property>
+</bean>
+</beans>

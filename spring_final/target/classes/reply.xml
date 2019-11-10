@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="reply">
+	<resultMap type="replyDTO" id="map3">
+		<result property="productId" column="productId" />
+		<result property="content" column="content" />
+		<result property="writer" column="writer" />
+	</resultMap>
+<!-- ORM -->
+	<select id="selectAll3" parameterType="replyDTO" resultMap="map3">
+		SELECT * FROM reply where productId=#{productId}
+	</select>
+</mapper>
